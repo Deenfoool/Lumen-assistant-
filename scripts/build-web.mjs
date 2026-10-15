@@ -12,6 +12,7 @@ export const WEB_ASSETS = Object.freeze([
   'js/command-engine.js',
   'js/platform.js',
   'js/platform-ui.js',
+  'js/voice-session.js',
   'docs/ROADMAP.md'
 ]);
 
