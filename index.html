@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="LUMEN — знакомьтесь с Люми. Первый локальный прототип персонального помощника.">
+  <title>LUMEN — Люми</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./js/app.js"></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="brand" href="./" aria-label="LUMEN, главная">
+        <span class="brand-mark" aria-hidden="true"><span></span></span>
+        <span><strong>LUMEN</strong><small>PERSONAL ASSISTANT</small></span>
+      </a>
+      <span class="sidebar-label">ПРОСТРАНСТВО</span>
+      <nav class="navigation" aria-label="Разделы">
+        <button type="button" class="nav-item active" data-view="home" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zM9 21v-8h6v8"/></svg>Главная</button>
+        <button type="button" class="nav-item" data-view="history"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5M12 7v5l4 2"/></svg>История</button>
+        <button type="button" class="nav-item" data-view="settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM19.4 15l1-1.7-1-2-2-.3-.8-1.8.9-1.8-1.8-1.8-1.8.9-1.8-.8-.3-2-2-1-1.7 1-1.7-1-2 1-.3 2-1.8.8-1.8-.9L.5 7.4l.9 1.8-.8 1.8-2 .3-1 2 1 1.7 2 .3.8 1.8-.9 1.8 1.8 1.8 1.8-.9 1.8.8.3 2 2 1 1.7-1 1.7 1 2-1 .3-2 1.8-.8 1.8.9 1.8-1.8-.9-1.8.8-1.8z" transform="translate(3 0) scale(.78)"/></svg>Настройки</button>
+      </nav>
+      <div class="sidebar-foot">
+        <span class="status-dot"></span><span>Локальная версия <strong>0.2</strong></span>
+        <small>Без подключения к нейросети</small>
+      </div>
+    </aside>
+    <main class="workspace">
+      <header class="topbar"><div><span class="eyebrow">ВАШЕ ПРОСТРАНСТВО</span><h1 id="page-title">Люми</h1></div><span class="mode-pill"><i></i> Локальный режим</span></header>
+      <section id="view-home" class="view">
+        <div class="hero">
+          <div class="orb-wrap" aria-hidden="true"><div class="orb"><div class="orb-inner"></div></div><div class="orb-halo"></div></div>
+          <span class="hero-kicker">LUMEN / EARLY PREVIEW</span>
+          <h2>Привет, я <em>Люми.</em></h2>
+          <p>Ваше пространство для общения и будущих возможностей. Начнём с простого?</p>
+        </div>
+        <section class="conversation" aria-label="Чат с Люми">
+          <div class="conversation-heading"><div><strong>Диалог</strong><span>Команды обрабатываются локально</span></div><button type="button" id="clear-chat" class="subtle-button">Очистить</button></div>
+          <div id="messages" class="messages" role="log" aria-live="polite" aria-relevant="additions">
+            <div class="message assistant"><span class="avatar">✦</span><div class="message-body"><small>Люми</small><p>Привет! Я ранняя версия Люми. Спросите, который час, чем я могу помочь, или попробуйте голосовой ввод.</p></div></div>
+          </div>
+          <div class="suggestions" aria-label="Примеры запросов"><button type="button" data-prompt="Что ты умеешь?">✦ Что ты умеешь?</button><button type="button" data-prompt="Который час?">◷ Который час?</button><button type="button" data-prompt="Открой GitHub">↗ Открой GitHub</button></div>
+          <form id="composer" class="composer"><label class="sr-only" for="prompt">Сообщение для Люми</label><input id="prompt" type="text" maxlength="500" placeholder="Напишите Люми..." autocomplete="off" required><button id="mic-button" class="icon-button" type="button" aria-label="Голосовой ввод" title="Голосовой ввод"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5m-4 0h8"/></svg></button><button class="send-button" type="submit" aria-label="Отправить"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 12 16-8-4 16-4-6-8-2zM12 14l8-10"/></svg></button></form>
+          <p class="footnote" id="voice-status" role="status">Люми пока знает только встроенные команды. Не вводите конфиденциальные данные.</p>
+        </section>
+      </section>
+      <section id="view-history" class="view secondary-view" hidden><div class="section-intro"><span class="eyebrow">ВАШИ ДАННЫЕ</span><h2>История диалога</h2><p>Хранится только в этом браузере. Очистка удаляет локальную копию.</p></div><div id="history-entries" class="history-entries"></div><button type="button" class="secondary-button" id="clear-history">Удалить историю</button></section>
+      <section id="view-settings" class="view secondary-view" hidden><div class="section-intro"><span class="eyebrow">ПЕРСОНАЛИЗАЦИЯ</span><h2>Настройки</h2><p>Никаких скрытых фоновых процессов. Голос включается по вашему действию.</p></div><div class="setting-card"><div><strong>Озвучивание ответов</strong><p>Люми произносит ответы средствами браузера. По умолчанию выключено.</p></div><label class="switch"><input id="tts-enabled" type="checkbox"><span aria-hidden="true"></span><span class="sr-only">Включить озвучивание ответов</span></label></div><div class="setting-card"><div><strong>Голосовой ввод</strong><p id="speech-support">Проверяем поддержку браузера...</p></div><span class="tag">По нажатию</span></div><div class="setting-card"><div><strong>Подключение ИИ и управление компьютером</strong><p>Пока недоступны. Эти функции требуют отдельного сервиса и Desktop-приложения.</p></div><span class="tag">В планах</span></div></section>
+    </main>
+    <aside class="info-panel"><div class="info-label">ЗНАКОМЬТЕСЬ</div><div class="info-orb" aria-hidden="true">✦</div><h2>Больше, чем чат.<br><span>В перспективе.</span></h2><p>Сейчас Люми — безопасный интерфейс и локальный обработчик команд. Следующие модули будут подключаться постепенно.</p><div class="feature"><span>01</span><div><strong>Диалог</strong><small>Работает локально</small></div><b class="ready">✓</b></div><div class="feature"><span>02</span><div><strong>Голос</strong><small>При поддержке браузера</small></div><b class="ready">✓</b></div><div class="feature"><span>03</span><div><strong>Интеллект и память</strong><small>Будущий этап</small></div><b>—</b></div><div class="feature"><span>04</span><div><strong>Действия на ПК</strong><small>Будущее Desktop-приложение</small></div><b>—</b></div><a class="roadmap-link" href="./docs/ROADMAP.md" target="_blank" rel="noopener noreferrer">Дорожная карта ↗</a></aside>
+  </div>
+</body>
+</html>
