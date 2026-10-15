@@ -1,4 +1,5 @@
 import { replyFor } from './commands.js';
+import { detectPlatform } from './platform.js';
 
 const STORAGE_KEY = 'lumen.messages.v1';
 const TTS_KEY = 'lumen.tts.v1';
@@ -8,7 +9,8 @@ const input = $('prompt');
 const micButton = $('mic-button');
 const voiceStatus = $('voice-status');
 const ttsInput = $('tts-enabled');
-const SpeechRecognitionClass = window.SpeechRecognition || window.webkitSpeechRecognition;
+// The browser provider may process audio externally; Desktop requires separately approved local STT.
+const SpeechRecognitionClass = detectPlatform() === 'web' ? (window.SpeechRecognition || window.webkitSpeechRecognition) : null;
 let recognizing = false;
 let recognition = null;
 let log = [];

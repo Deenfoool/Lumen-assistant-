@@ -1,0 +1,8 @@
+{
+  "identifier": "main",
+  "description": "LUMEN main window. No shell, filesystem, process, or power permissions.",
+  "windows": [
+    "main"
+  ],
+  "permissions": []
+}

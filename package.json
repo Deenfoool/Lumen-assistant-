@@ -1,11 +1,20 @@
 {
   "name": "lumen-assistant",
   "private": true,
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
-  "description": "LUMEN / Lumi: static web preview",
+  "description": "LUMEN / Lumi: shared Web and Tauri Desktop shell without LLM",
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "build:web": "node scripts/build-web.mjs",
+    "tauri": "tauri",
+    "desktop:dev": "tauri dev",
+    "desktop:build": "tauri build"
   },
-  "engines": { "node": ">=20" }
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
 }
